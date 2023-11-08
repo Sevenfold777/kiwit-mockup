@@ -16,8 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* proper_drink_appTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = proper_drink_appTests.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* proper_drink_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proper_drink_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = proper_drink_app/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = proper_drink_app/AppDelegate.mm; sourceTree = "<group>"; };
@@ -33,7 +31,6 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-proper_drink_app-proper_drink_appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proper_drink_app-proper_drink_appTests.release.xcconfig"; path = "Target Support Files/Pods-proper_drink_app-proper_drink_appTests/Pods-proper_drink_app-proper_drink_appTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6C6C4402AD01EE700ABC598 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = proper_drink_app/SplashScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FD3AAAF062A46BD001A60E41 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-proper_drink_app-proper_drink_appTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,28 +45,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* proper_drink_appTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* proper_drink_appTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = proper_drink_appTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		00E58183EF479C20A1AB877E /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
 				3D9D43115088CCC7C135A475 /* proper_drink_app */,
-				C16C53334FE755E1AB4542B6 /* proper_drink_appTests */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
@@ -117,7 +96,6 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* proper_drink_app */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* proper_drink_appTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -145,14 +123,6 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-proper_drink_app-proper_drink_appTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		C16C53334FE755E1AB4542B6 /* proper_drink_appTests */ = {
-			isa = PBXGroup;
-			children = (
-				FD3AAAF062A46BD001A60E41 /* ExpoModulesProvider.swift */,
-			);
-			name = proper_drink_appTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,7 +444,10 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -544,7 +517,10 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

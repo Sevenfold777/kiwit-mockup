@@ -62,7 +62,7 @@ function App() {
     <Observer>
       {() => (
         <QueryClientProvider client={queryClient}>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+          <StatusBar barStyle="light-content" />
           <SafeAreaProvider>
             <NavigationContainer ref={navigationRef} onReady={onLayoutRootView}>
               {isSignedIn ? <SignedInNav /> : null}

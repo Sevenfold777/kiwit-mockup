@@ -5,12 +5,13 @@ export const RowContainer = styled.View`
   align-items: center;
 `;
 
-export const Prompt = styled.View`
-  padding: 10px 10px 0px 10px;
-  margin-left: 7px;
+export const Title = styled.View`
+  /* padding: 10px 10px 0px 10px; */
+  padding: 10px;
+  /* margin-left: 7px; */
 `;
 
-export const PromptText = styled.Text`
+export const TitleText = styled.Text`
   /* font-family: 'nanum-bold'; */
   font-size: 16px;
 `;

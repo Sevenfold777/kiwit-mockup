@@ -2,38 +2,25 @@ import React from 'react';
 import styled from 'styled-components/native';
 import ScreenLayout from '../components/common/ScreenLayout';
 import {MainTabScreenProps} from '../navigators/types';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, useWindowDimensions} from 'react-native';
+import DRPreview from '../components/drinks/DRPreview';
 
 const Container = styled.View`
-  flex: 1;
-`;
-
-const SampleText = styled.Text`
-  font-size: 20px;
+  padding: 10px;
 `;
 
 export default function Home({
   navigation,
   route: {name, params},
 }: MainTabScreenProps<'Home'>) {
-  console.log(params);
+  const {width: pageWidth} = useWindowDimensions();
 
   return (
     <ScreenLayout>
       <Container>
-        <SampleText>{name}</SampleText>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('DrinkPage', {id: 10});
-          }}
-          style={{
-            padding: 10,
-            backgroundColor: '#fead',
-            margin: 10,
-            borderRadius: 10,
-          }}>
-          <SampleText>Drink Page</SampleText>
-        </TouchableOpacity>
+        <DRPreview pageWidth={pageWidth} />
+        <DRPreview pageWidth={pageWidth} />
+        <DRPreview pageWidth={pageWidth} />
       </Container>
     </ScreenLayout>
   );

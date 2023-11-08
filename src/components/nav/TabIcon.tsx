@@ -1,6 +1,7 @@
 import React from 'react';
 import {Ionicons} from '@expo/vector-icons';
 import PropTypes from 'prop-types';
+import {Colors} from '../../Config';
 
 type Props = {
   name: keyof typeof Ionicons.glyphMap;
@@ -18,7 +19,13 @@ export default function TabIcon({name, isFocused}: Props) {
     iconName = outlined;
   }
 
-  return <Ionicons name={iconName} size={25} />;
+  return (
+    <Ionicons
+      name={iconName}
+      size={25}
+      color={isFocused ? Colors.main : 'black'}
+    />
+  );
 }
 
 TabIcon.propTypes = {

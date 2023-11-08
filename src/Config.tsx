@@ -1,5 +1,5 @@
 export const Colors = {
-  main: '#f9852d',
+  main: '#122346',
   sub: '#fce0ca',
   borderLight: '#e7e7e7',
   borderDark: '#aeaeae',
