@@ -26,7 +26,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'proper_drink_app' do
+target 'kiwitmockup' do
   use_expo_modules!
   post_integrate do |installer|
     begin
@@ -54,7 +54,7 @@ target 'proper_drink_app' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  # target 'proper_drink_appTests' do
+  # target 'kiwitmockupTests' do
   #   inherit! :complete
   #   # Pods for testing
   # end

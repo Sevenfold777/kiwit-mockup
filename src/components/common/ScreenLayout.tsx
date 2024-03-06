@@ -13,7 +13,13 @@ type Props = {
 export default function ScreenLayout({children, safeAreaColor}: Props) {
   const route = useRoute();
 
-  const mainTabScreens = ['Home', 'Search'];
+  const mainTabScreens = [
+    'Home',
+    'LectureHome',
+    'QuizHome',
+    'InterviewHome',
+    'MyPage',
+  ];
 
   // for ios tab nav screens
   if (mainTabScreens.includes(route.name)) {

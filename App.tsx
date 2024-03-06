@@ -13,6 +13,7 @@ import SignedInNav from './src/navigators/SignedInNav';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import {Observer} from 'mobx-react-lite';
+import * as Font from 'expo-font';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,6 +36,11 @@ function App() {
   useEffect(() => {
     async function prepare() {
       try {
+        // Fonts
+        await Font.loadAsync({
+          'sejong-bold': require('./src/assets/fonts/sejong-bold.ttf'),
+          'sejong-regular': require('./src/assets/fonts/sejong-regular.ttf'),
+        });
       } catch (e) {
         console.warn(e);
       } finally {

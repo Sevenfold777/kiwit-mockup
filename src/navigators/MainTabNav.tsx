@@ -5,11 +5,8 @@ import {
   BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
-import Search from '../screens/Search';
 import {MainTabParams} from './types';
 import TabIcon from '../components/nav/TabIcon';
-import MyDrinks from '../screens/MyDrinks';
-import TNoteCreate from '../screens/TNoteCreate';
 import Notifications from '../screens/Notifications';
 import Toast from '../components/common/Toast';
 import Empty from '../screens/Empty';
@@ -21,6 +18,18 @@ import {Colors} from '../Config';
 import styled from 'styled-components/native';
 import {Ionicons} from '@expo/vector-icons';
 import BottomSheet, {BottomSheetItem} from '../components/common/BottomSheet';
+import MyPage from '../screens/MyPage';
+import InterviewHome from '../screens/InterviewHome';
+import QuizHome from '../screens/QuizHome';
+import ModalLh, {ModalItem} from '../components/common/ModalLh';
+import {observer} from 'mobx-react-lite';
+import authStore from '../stores/AuthStore';
+import LectureHome from '../screens/LectureHome';
+import {
+  HeaderIconBtn,
+  HeaderTitleBtn,
+  HeaderTitleText,
+} from '../components/common/Header';
 
 const TabBarContainer = styled.View<{insetBottom: number}>`
   flex-direction: row;
@@ -30,13 +39,65 @@ const TabBarContainer = styled.View<{insetBottom: number}>`
   background-color: ${Colors.white};
 `;
 
+const PointText = styled.Text`
+  font-size: 17px;
+  /* font-weight: 600; */
+  color: white;
+`;
+
+function HeaderTitle() {
+  const [isModal, setModal] = useState(false);
+
+  return (
+    <>
+      <HeaderTitleBtn onPress={() => setModal(!isModal)}>
+        <RowContainer>
+          <HeaderTitleText>
+            {authStore.isAdvanced ? 'Advanced' : 'Basic'}
+          </HeaderTitleText>
+          <Ionicons name="chevron-down" color="white" size={17} />
+        </RowContainer>
+      </HeaderTitleBtn>
+      <ModalLh
+        isVisible={isModal}
+        onClose={() => setModal(false)}
+        confirmDisabled={false}
+        onConfirm={() => {}}
+        onCloseEnd={() => {}}>
+        <ModalItem
+          // iconName="camera-outline"
+          // iconSize={22}
+          payload="Basic"
+          onPress={() => {
+            setModal(false);
+            authStore.setAdvanced(false);
+          }}
+          isSelected={!authStore.isAdvanced}
+        />
+        <ModalItem
+          // iconName="camera-outline"
+          // iconSize={22}
+          payload="Advanced"
+          onPress={() => {
+            setModal(false);
+            authStore.setAdvanced(true);
+          }}
+          isSelected={authStore.isAdvanced}
+        />
+      </ModalLh>
+    </>
+  );
+}
+
+observer(HeaderTitle);
+
 const Tab = createBottomTabNavigator<MainTabParams>();
 
 function TabBar({state, descriptors, navigation}: BottomTabBarProps) {
   const [isBtmModal, setBtmModal] = useState(false);
   const insets = useSafeAreaInsets();
 
-  const iconNames = ['list', 'search', 'add', 'notifications', 'person'];
+  const iconNames = ['home', 'list', 'add', 'notifications', 'person'];
   const tabs: {
     key: string;
     name: string;
@@ -125,47 +186,116 @@ function TabBar({state, descriptors, navigation}: BottomTabBarProps) {
 }
 
 export default function MainTabNav() {
-  const [isUpModal, setUpModal] = useState(false);
+  // const [isUpModal, setUpModal] = useState(false);
+
   return (
     <Tab.Navigator
-      tabBar={props => <TabBar {...props} />}
+      // tabBar={props => <TabBar {...props} />}
       screenOptions={{
-        tabBarShowLabel: false,
+        // tabBarShowLabel: false,
         headerTitleAlign: 'left',
         headerShadowVisible: false,
         // headerTitleStyle: {fontFamily: 'nanum-bold'},
         tabBarHideOnKeyboard: true,
         headerStyle: {backgroundColor: Colors.main}, // '#102245'
         headerTintColor: 'white',
+        headerTitle: HeaderTitle,
       }}>
       <Tab.Screen
         name="Home"
         component={Home}
-        options={({}) => ({
-          headerTitle: 'Proper Drink',
+        options={({navigation}) => ({
+          // headerTitle: '홈',
+          headerRight: () => (
+            <RowContainer style={{paddingHorizontal: 10}}>
+              <HeaderIconBtn
+                onPress={() => navigation.navigate('Notifications')}>
+                <Ionicons
+                  name="notifications-outline"
+                  color="white"
+                  size={20}
+                />
+              </HeaderIconBtn>
+              <HeaderIconBtn onPress={() => {}}>
+                <RowContainer>
+                  <Ionicons name="logo-bitcoin" color="white" size={20} />
+                  <PointText style={{marginLeft: 5}}>101</PointText>
+                </RowContainer>
+              </HeaderIconBtn>
+              <HeaderIconBtn onPress={() => {}}>
+                <RowContainer>
+                  <PointText>{`Lv. ${1}`}</PointText>
+                </RowContainer>
+              </HeaderIconBtn>
+            </RowContainer>
+          ),
+          tabBarIcon: ({focused}) => (
+            <TabIcon name="home" isFocused={focused} />
+          ),
+          tabBarLabel: 'Home',
         })}
       />
       <Tab.Screen
-        name="Search"
-        component={Search}
+        name="LectureHome"
+        component={LectureHome}
         options={({}) => ({
-          headerTitle: 'Search',
+          // headerTitle: '홈',
+          headerRight: () => (
+            <RowContainer style={{paddingHorizontal: 10}}>
+              <HeaderIconBtn onPress={() => {}}>
+                <RowContainer>
+                  <PointText>{`Lv. ${1}`}</PointText>
+                </RowContainer>
+              </HeaderIconBtn>
+            </RowContainer>
+          ),
+          tabBarIcon: ({focused}) => (
+            <TabIcon name="file-tray-full" isFocused={focused} />
+          ),
+          tabBarLabel: 'Lecture',
         })}
       />
 
       <Tab.Screen
-        name="Notifications"
-        component={Notifications}
+        name="QuizHome"
+        component={QuizHome}
         options={({}) => ({
-          headerTitle: 'Notifications',
+          // headerTitle: 'Quiz',
+          tabBarIcon: ({focused}) => (
+            <TabIcon name="create" isFocused={focused} />
+          ),
+          tabBarLabel: 'Quiz',
         })}
       />
 
       <Tab.Screen
-        name="MyDrinks"
-        component={MyDrinks}
+        name="InterviewHome"
+        component={InterviewHome}
         options={({}) => ({
-          headerTitle: 'MyDrinks',
+          // headerTitle: 'Interview',
+          tabBarIcon: ({focused}) => (
+            <TabIcon name="chatbubbles" isFocused={focused} />
+          ),
+          tabBarLabel: 'GPT',
+        })}
+      />
+
+      <Tab.Screen
+        name="MyPage"
+        component={MyPage}
+        options={({navigation}) => ({
+          headerTitle: 'tiobi',
+          tabBarIcon: ({focused}) => (
+            <TabIcon name="person" isFocused={focused} />
+          ),
+          // headerRight: () => (
+          //   <RowContainer style={{paddingHorizontal: 10}}>
+          //     <HeaderIconBtn onPress={() => {}}>
+          //       <Ionicons name="cog-outline" color="white" size={20} />
+          //     </HeaderIconBtn>
+          //   </RowContainer>
+          // ),
+          tabBarLabel: 'MY',
         })}
       />
     </Tab.Navigator>

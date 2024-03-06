@@ -2,13 +2,14 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import MainTabNav from './MainTabNav';
 import {SignedInParams} from './types';
-import DrinkPage from '../screens/DrinkPage';
 import {Platform} from 'react-native';
-import TNoteCreate from '../screens/TNoteCreate';
-import TakePhoto from '../screens/Uploads/TakePhoto';
-import SelectPhoto from '../screens/Uploads/SelectPhoto';
-import TakeNote from '../screens/Uploads/TakeNote';
 import {Colors} from '../Config';
+import Interview from '../screens/Interview';
+import Quiz from '../screens/Quiz';
+import Notifications from '../screens/Notifications';
+import Lecture from '../screens/Lecture';
+import LectureList from '../screens/LectureList';
+import QuizList from '../screens/QuizList';
 
 const Stack = createStackNavigator<SignedInParams>();
 
@@ -35,11 +36,23 @@ export default function SignedInNav() {
         component={MainTabNav}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="DrinkPage" component={DrinkPage} />
 
+      <Stack.Screen name="Lecture" component={Lecture} />
+      <Stack.Screen name="LectureList" component={LectureList} />
+
+      <Stack.Screen name="Quiz" component={Quiz} />
+      <Stack.Screen name="QuizList" component={QuizList} />
+
+      <Stack.Screen name="Interview" component={Interview} />
+      <Stack.Screen
+        name="Notifications"
+        component={Notifications}
+        options={{headerTitle: '알림'}}
+      />
+      {/* <Stack.Screen name="DrinkPage" component={DrinkPage} />
       <Stack.Screen name="TakePhoto" component={TakePhoto} />
       <Stack.Screen name="SelectPhoto" component={SelectPhoto} />
-      <Stack.Screen name="TakeNote" component={TakeNote} />
+      <Stack.Screen name="TakeNote" component={TakeNote} /> */}
     </Stack.Navigator>
   );
 }

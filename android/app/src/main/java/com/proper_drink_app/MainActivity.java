@@ -14,7 +14,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "proper_drink_app";
+    return "kiwit-mockup";
   }
 
   /**

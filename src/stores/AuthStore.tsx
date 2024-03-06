@@ -15,6 +15,11 @@ const authStore = observable({
   familyId: 0,
   permissionsChecked: false,
   isTokenRefreshing: false,
+  isAdvanced: true,
+
+  setAdvanced(bool: boolean) {
+    this.isAdvanced = bool;
+  },
 
   // login action
   async loginAction({
