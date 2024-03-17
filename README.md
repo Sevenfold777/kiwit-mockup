@@ -26,7 +26,7 @@ kiwIT 앱의 mockup이자 React Native를 활용한 앱 제작 템플릿. 실제
 └────SignedOutNav
         │
         │─SignIn Screen
-        └─SignOut Screen
+        └─SignUp Screen
 ```
 
 ## Screens
