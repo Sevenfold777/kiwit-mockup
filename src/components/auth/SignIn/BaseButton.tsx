@@ -28,7 +28,7 @@ const LoginBtnImg = styled.Image`
   height: 22px;
 `;
 
-const LoginBtnTextWrapper = styled.View<{a: number}>`
+const LoginBtnTextWrapper = styled.View`
   /* flex: 1; */
   border-left-width: 1px;
   border-color: ${Colors.white};

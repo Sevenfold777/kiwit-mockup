@@ -76,27 +76,18 @@ export default function QuizHome({navigation}: MainTabScreenProps<'QuizHome'>) {
           contentContainerStyle={{marginTop: 5, marginBottom: 15}}
           horizontal
           showsHorizontalScrollIndicator={false}>
-          <Filter selected={true}>
-            <FilterText>{'Lv : 전체'}</FilterText>
-          </Filter>
-          <Filter selected={true}>
-            <FilterText>{'과목 : 전체'}</FilterText>
-          </Filter>
-          <Filter selected={false}>
-            <FilterText>{'알고리즘'}</FilterText>
-          </Filter>
-          <Filter selected={false}>
-            <FilterText>{'자료구조'}</FilterText>
-          </Filter>
-          <Filter selected={false}>
-            <FilterText>{'데이터베이스'}</FilterText>
-          </Filter>
-          <Filter selected={false}>
-            <FilterText>{'운영체제'}</FilterText>
-          </Filter>
-          <Filter selected={false}>
-            <FilterText>{'운영체제'}</FilterText>
-          </Filter>
+          {[
+            'Lv : 전체',
+            '과목 : 전체',
+            '알고리즘',
+            '자료구조',
+            '데이터베이스',
+            '운영체제',
+          ].map((sub, idx) => (
+            <Filter key={idx} selected={true}>
+              <FilterText>{sub}</FilterText>
+            </Filter>
+          ))}
         </ScrollView>
 
         <QuizGroup />

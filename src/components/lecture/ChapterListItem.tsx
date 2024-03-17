@@ -14,7 +14,7 @@ const Container = styled.TouchableOpacity`
   background-color: white;
 `;
 
-const ImageWrapper = styled.View<{width: number}>`
+const ImageWrapper = styled.View`
   width: 80px;
   border-radius: 10px;
   border: 1px solid ${Colors.borderLight};
@@ -95,6 +95,9 @@ export default function ChapterListItem({
   isPressed,
   onPress,
 }: Props) {
+  const dockerThumbnail =
+    'https://subicura.com/generated/assets/article_images/2017-01-19-docker-guide-for-beginners-1/docker-logo-800-b3c79c1cb.png';
+
   return (
     <Container onPress={onPress}>
       <RowContainer style={{alignItems: 'center'}}>
@@ -105,7 +108,9 @@ export default function ChapterListItem({
               aspectRatio: 1,
               borderRadius: 10,
             }}
-            source={require('../../assets/thumbnails/post/mvc.png')}
+            source={{
+              uri: dockerThumbnail,
+            }}
           />
         </ImageWrapper>
         <PayloadContainer>
@@ -146,5 +151,10 @@ export default function ChapterListItem({
 }
 
 ChapterListItem.propTypes = {
-  // pageWidth: propTypes.number.isRequired,
+  index: propTypes.number.isRequired,
+  subject: propTypes.string.isRequired,
+  chapter: propTypes.string.isRequired,
+  progress: propTypes.bool,
+  isPressed: propTypes.bool.isRequired,
+  onPress: propTypes.func,
 };

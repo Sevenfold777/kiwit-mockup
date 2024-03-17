@@ -1,16 +1,15 @@
-export const Colors = {
-  // main: '#122346',
-  main: '#2848f5',
-  sub: '#a6b3f5',
-  borderLight: '#e7e7e7',
-  borderDark: '#aeaeae',
-  white: '#ffffff',
-  black: '#000000',
-  heart: '#ED4956',
-  balanceA: '#ff7676',
-  balanceB: '#ffa364',
-  subLight: '#ECF0FF',
-};
+export enum Colors {
+  main = '#2848f5',
+  sub = '#a6b3f5',
+  borderLight = '#e7e7e7',
+  borderDark = '#aeaeae',
+  white = '#ffffff',
+  black = '#000000',
+  heart = '#ED4956',
+  balanceA = '#ff7676',
+  balanceB = '#ffa364',
+  subLight = '#ECF0FF',
+}
 
 export const LvColors = [
   '#ffe1f4',

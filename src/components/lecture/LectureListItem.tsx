@@ -126,4 +126,7 @@ export default function LectureListItem({index, title, isLast}: Props) {
 
 LectureListItem.propTypes = {
   // pageWidth: propTypes.number.isRequired,
+  index: propTypes.number.isRequired,
+  title: propTypes.string.isRequired,
+  isLast: propTypes.bool,
 };

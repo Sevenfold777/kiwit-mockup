@@ -2,14 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import ScreenLayout from '../components/common/ScreenLayout';
 import {MainTabScreenProps} from '../navigators/types';
-import {
-  ScrollView,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from 'react-native';
-import DRPreview from '../components/drinks/DRPreview';
-import PostListItem from '../components/lecture/LectureListItem';
+import {ScrollView, View, useWindowDimensions} from 'react-native';
 import {Colors} from '../Config';
 import {
   RowContainer,
@@ -19,10 +12,8 @@ import {
 } from '../components/common/Common';
 import FastImage from 'react-native-fast-image';
 import TodaysStudy from '../components/home/TodaysStudy';
-import StatBox from '../components/mypage/StatBox';
 import QuizListItem from '../components/quiz/QuizListItem';
 import ChapterListItem from '../components/lecture/ChapterListItem';
-import Toast from '../components/common/Toast';
 
 const Attendence = styled.View<{attended: boolean}>`
   justify-content: center;

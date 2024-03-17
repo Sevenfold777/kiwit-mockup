@@ -14,7 +14,6 @@ const QuizCnt = styled.Text`
 
 export default function QuizList({
   navigation,
-  route: {params},
 }: SignedInScreenProps<'QuizList'>) {
   const quizes = [
     {title: '객체 지향 프로그래밍의 핵심 개념', percentage: 49},
@@ -36,7 +35,9 @@ export default function QuizList({
     });
   }, []);
 
-  const renderQuiz = ({item}) => <QuizListItem {...item} />;
+  const renderQuiz = ({item}: {item: {title: string; percentage: number}}) => (
+    <QuizListItem {...item} />
+  );
 
   return (
     <ScreenLayout>

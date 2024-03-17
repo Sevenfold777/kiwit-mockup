@@ -4,12 +4,7 @@ import jwtDecode, {JwtPayload} from 'jwt-decode';
 import authStore from '../stores/AuthStore';
 // import {ACCESS_TOKEN, REFRESH_TOKEN} from '../Config';
 
-// export const SERVER_URL = "http://localhost:3000"; // dev (hotspot)
-// export const SERVER_URL = "http://192.168.0.3:3000";
-// export const SERVER_URL = "http://192.168.35.2:3000";
-
-export const SERVER_URL = 'https://prod-backend.wool2ga.com';
-export const INVITATION_URL = 'https://invite.wool2ga.com';
+export const SERVER_URL = 'http://192.168.0.3:3000';
 
 /** http request method */
 export enum METHOD {
@@ -22,10 +17,7 @@ export enum METHOD {
 
 /** axios skeleton */
 export async function _promise(method: METHOD, url: string, body = {}) {
-  // get Token
   let accessToken = authStore.accessToken;
-  // console.log(accessToken);
-  // console.log(url);
 
   if (accessToken) {
     // 단위: seconds (초)
@@ -37,18 +29,17 @@ export async function _promise(method: METHOD, url: string, body = {}) {
     if (!accessTokenExpires) {
       return;
     } else if (now + 300 > accessTokenExpires) {
-      // if (now + 120 > accessTokenExpires && !authStore.isTokenRefreshing) {
+      // if token is refreshing already - pending
       if (!authStore.isTokenRefreshing) {
         accessToken = await authStore.refreshAccessToken();
       } else {
-        // 10초 간 기다림 - 10초 지나면 request drop --> avoid 401
+        // 최대 10초 간 기다림 - 10초 지나면 request drop --> 401
         let refreshed = false;
         for (let i = 0; i < 20; i++) {
           if (accessToken !== authStore.accessToken) {
             refreshed = true;
             break;
           }
-          // console.log("<", i, "> ", url);
           await new Promise(res => setTimeout(res, 500));
         }
 
@@ -83,6 +74,6 @@ export async function _promise(method: METHOD, url: string, body = {}) {
     return response;
   } catch (e) {
     // addtional error handling needed
-    console.log(e);
+    console.warn(e);
   }
 }

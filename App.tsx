@@ -14,6 +14,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import {Observer} from 'mobx-react-lite';
 import * as Font from 'expo-font';
+import SignedOutNav from './src/navigators/SignedOutNav';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,13 +27,13 @@ function App() {
 
   /** for open notification */
   const [initialNotification, setInitialNotification] = useState();
-
   const isDarkMode = useColorScheme() === 'dark';
 
   // const backgroundStyle = {
   //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   // };
 
+  // preload on mount
   useEffect(() => {
     async function prepare() {
       try {
@@ -44,7 +45,6 @@ function App() {
       } catch (e) {
         console.warn(e);
       } finally {
-        // tell the application to render
         setAppIsReady(true);
       }
     }
@@ -52,6 +52,7 @@ function App() {
     prepare();
   }, []);
 
+  // for preload and splashscreen
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
       await SplashScreen.hideAsync();
@@ -71,7 +72,7 @@ function App() {
           <StatusBar barStyle="light-content" />
           <SafeAreaProvider>
             <NavigationContainer ref={navigationRef} onReady={onLayoutRootView}>
-              {isSignedIn ? <SignedInNav /> : null}
+              {isSignedIn ? <SignedInNav /> : <SignedOutNav />}
             </NavigationContainer>
           </SafeAreaProvider>
         </QueryClientProvider>

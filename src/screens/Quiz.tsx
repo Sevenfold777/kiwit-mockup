@@ -27,8 +27,6 @@ export default function Quiz({
   //     title: '서버도 컴퓨터에요',
   //   };
 
-  const [currentPage, setCurrentPage] = useState(0);
-
   const quiz = {
     subject: '디자인 패턴과 프로그래밍 패러다임',
     chapter: '디자인 패턴',

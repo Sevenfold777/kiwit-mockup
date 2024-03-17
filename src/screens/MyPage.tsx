@@ -11,7 +11,7 @@ import StatBox from '../components/mypage/StatBox';
 import {ScrollView} from 'react-native';
 import Menu, {MenuBorder} from '../components/mypage/Menu';
 import Toast from '../components/common/Toast';
-import {MainTabScreenProps, SignedInScreenProps} from '../navigators/types';
+import {MainTabScreenProps} from '../navigators/types';
 
 export default function MyPage({navigation}: MainTabScreenProps<'MyPage'>) {
   return (

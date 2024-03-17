@@ -1,3 +1,9 @@
+/ios/GoogleService-Info.plist
+/android/app/google-services.json
+**/Info.plist
+**/gradle.properties
+**/AndroidManifest.xml
+
 # OSX
 #
 .DS_Store

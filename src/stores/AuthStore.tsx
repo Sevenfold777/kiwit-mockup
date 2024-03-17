@@ -11,8 +11,7 @@ const authStore = observable({
   isSignedIn: false,
   accessToken: '',
   userId: 0,
-  name: '',
-  familyId: 0,
+  nickname: '',
   permissionsChecked: false,
   isTokenRefreshing: false,
   isAdvanced: true,
@@ -40,7 +39,7 @@ const authStore = observable({
       await SecureStore.setItemAsync(REFRESH_TOKEN, refreshToken);
     }
 
-    const me = await _promise(METHOD.GET, 'users/my');
+    const me = await _promise(METHOD.GET, 'user');
 
     // check fcm token; 토큰이 달라졌으면 갱신
     // const fcmToken = await messaging().getToken();
@@ -51,14 +50,14 @@ const authStore = observable({
     runInAction(() => {
       authStore.setUserId({
         userId: me?.data?.id,
-        name: me?.data?.name,
+        nickname: me?.data?.nickname,
       });
     });
   },
 
   // logout action
   async logoutAction() {
-    await _promise(METHOD.PATCH, 'users', {fcmToken: ''});
+    await _promise(METHOD.PATCH, 'user/sign-out', {fcmToken: ''});
 
     await SecureStore.deleteItemAsync(ACCESS_TOKEN);
     await SecureStore.deleteItemAsync(REFRESH_TOKEN);
@@ -70,12 +69,12 @@ const authStore = observable({
   },
 
   // set ids
-  setUserId({userId, name}: {userId: number; name: string}) {
-    if (!userId || !name) {
+  setUserId({userId, nickname}: {userId: number; nickname: string}) {
+    if (!userId || !nickname) {
       return;
     }
     this.userId = userId;
-    this.name = name;
+    this.nickname = nickname;
   },
 
   setPermission(isChecked: boolean) {
@@ -110,7 +109,7 @@ const authStore = observable({
       // refresh ACCESS TOKEN
       const result = await axios({
         method: METHOD.PATCH,
-        url: 'users/refreshToken',
+        url: 'user/refresh',
         baseURL: SERVER_URL,
         data: {refreshToken},
       });

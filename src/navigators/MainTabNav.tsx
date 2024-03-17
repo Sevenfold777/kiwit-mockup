@@ -7,11 +7,7 @@ import {
 import Home from '../screens/Home';
 import {MainTabParams} from './types';
 import TabIcon from '../components/nav/TabIcon';
-import Notifications from '../screens/Notifications';
-import Toast from '../components/common/Toast';
-import Empty from '../screens/Empty';
-import {Text, TouchableOpacity, View} from 'react-native';
-import Modal from '../components/common/Modal';
+import {TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {RowContainer} from '../components/common/Common';
 import {Colors} from '../Config';
@@ -45,6 +41,9 @@ const PointText = styled.Text`
   color: white;
 `;
 
+const Tab = createBottomTabNavigator<MainTabParams>();
+
+// Custom Headr Title (Touchable with Modal)
 function HeaderTitle() {
   const [isModal, setModal] = useState(false);
 
@@ -89,11 +88,11 @@ function HeaderTitle() {
   );
 }
 
+// observe mobx state
 observer(HeaderTitle);
 
-const Tab = createBottomTabNavigator<MainTabParams>();
-
-function TabBar({state, descriptors, navigation}: BottomTabBarProps) {
+// Custom Bottom Tab bar (with bottom sheet modal)
+function TabBar({state, navigation}: BottomTabBarProps) {
   const [isBtmModal, setBtmModal] = useState(false);
   const insets = useSafeAreaInsets();
 
@@ -152,7 +151,10 @@ function TabBar({state, descriptors, navigation}: BottomTabBarProps) {
       <BottomSheet
         title="테이스팅 노트 작성"
         isVisible={isBtmModal}
-        onClose={() => setBtmModal(false)}>
+        confirmDisabled={false}
+        onConfirm={() => {}}
+        onClose={() => setBtmModal(false)}
+        onCloseEnd={() => {}}>
         <BottomSheetItem
           iconName="camera-outline"
           iconSize={22}
@@ -190,16 +192,16 @@ export default function MainTabNav() {
 
   return (
     <Tab.Navigator
-      // tabBar={props => <TabBar {...props} />}
+      // tabBar={props => <TabBar {...props} />} // for custom tab bar
       screenOptions={{
-        // tabBarShowLabel: false,
         headerTitleAlign: 'left',
         headerShadowVisible: false,
-        // headerTitleStyle: {fontFamily: 'nanum-bold'},
         tabBarHideOnKeyboard: true,
-        headerStyle: {backgroundColor: Colors.main}, // '#102245'
+        headerStyle: {backgroundColor: Colors.main},
         headerTintColor: 'white',
-        headerTitle: HeaderTitle,
+        headerTitle: HeaderTitle, // custom header title (for all tab navs)
+        // tabBarShowLabel: false,
+        // headerTitleStyle: {fontFamily: 'nanum-bold'},
       }}>
       <Tab.Screen
         name="Home"
@@ -235,11 +237,12 @@ export default function MainTabNav() {
           tabBarLabel: 'Home',
         })}
       />
+
       <Tab.Screen
         name="LectureHome"
         component={LectureHome}
         options={({}) => ({
-          // headerTitle: '홈',
+          // headerTitle: '강의',
           headerRight: () => (
             <RowContainer style={{paddingHorizontal: 10}}>
               <HeaderIconBtn onPress={() => {}}>
@@ -284,7 +287,7 @@ export default function MainTabNav() {
         name="MyPage"
         component={MyPage}
         options={({navigation}) => ({
-          headerTitle: 'tiobi',
+          headerTitle: 'username',
           tabBarIcon: ({focused}) => (
             <TabIcon name="person" isFocused={focused} />
           ),

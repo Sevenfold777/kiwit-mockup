@@ -20,7 +20,7 @@ const LectureContainer = styled.TouchableOpacity`
   margin-bottom: 15px;
 `;
 
-const ImageWrapper = styled.View<{width: number}>`
+const ImageWrapper = styled.View`
   width: 110px;
   border-radius: 10px;
   border: 1px solid ${Colors.borderLight};
@@ -90,6 +90,9 @@ type Props = {};
 export default function TodaysStudy({}: Props) {
   const navigation = useNavigation();
 
+  const dockerThumbnail =
+    'https://subicura.com/generated/assets/article_images/2017-01-19-docker-guide-for-beginners-1/docker-logo-800-b3c79c1cb.png';
+
   return (
     <Container>
       <LectureContainer>
@@ -100,7 +103,7 @@ export default function TodaysStudy({}: Props) {
               aspectRatio: 1,
               borderRadius: 10,
             }}
-            source={require('../../assets/thumbnails/post/mvc.png')}
+            source={{uri: dockerThumbnail}}
           />
         </ImageWrapper>
         <PayloadContainer>

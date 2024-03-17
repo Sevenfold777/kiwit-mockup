@@ -3,6 +3,7 @@ import {
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
+import {StackScreenProps} from '@react-navigation/stack';
 
 export type SignedInParams = {
   MainTabNav: NavigatorScreenParams<MainTabParams>;
@@ -33,9 +34,12 @@ export type MainTabScreenProps<T extends keyof MainTabParams> =
   >;
 
 export type SignedOutParams = {
-  Home: undefined;
-  Search: {searchKey: string} | undefined;
+  SignIn: undefined;
+  SignUp: undefined;
 };
+
+export type SignedOutScreenProps<T extends keyof SignedOutParams> =
+  StackScreenProps<SignedOutParams, T>;
 
 declare global {
   namespace ReactNavigation {

@@ -23,6 +23,8 @@ export default function SignedInNav() {
         headerStyle: {backgroundColor: Colors.main},
         // headerTitleStyle: { fontFamily: "nanum-bold" },
         headerTitleAlign: 'left',
+
+        // for ios gesture
         ...(Platform.OS === 'ios' && {
           // animationEnabled: false,
           gestureEnabled: true,
@@ -49,10 +51,6 @@ export default function SignedInNav() {
         component={Notifications}
         options={{headerTitle: '알림'}}
       />
-      {/* <Stack.Screen name="DrinkPage" component={DrinkPage} />
-      <Stack.Screen name="TakePhoto" component={TakePhoto} />
-      <Stack.Screen name="SelectPhoto" component={SelectPhoto} />
-      <Stack.Screen name="TakeNote" component={TakeNote} /> */}
     </Stack.Navigator>
   );
 }

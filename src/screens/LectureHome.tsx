@@ -8,28 +8,6 @@ import {Colors} from '../Config';
 import {Title, TitleText} from '../components/common/Common';
 import FastImage from 'react-native-fast-image';
 
-const StartContainer = styled.View`
-  padding: 0px 10px 10px 10px;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StartBtn = styled.TouchableOpacity`
-  /* flex: 1; */
-  justify-content: center;
-  align-items: center;
-  padding: 15px 10px;
-  border-radius: 10px;
-  background-color: ${Colors.main};
-  width: 100%;
-`;
-
-const StartText = styled.Text`
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-`;
-
 export default function LectureHome({}: MainTabScreenProps<'LectureHome'>) {
   const {width: pageWidth} = useWindowDimensions();
 
@@ -69,7 +47,7 @@ export default function LectureHome({}: MainTabScreenProps<'LectureHome'>) {
         //   }
         // }}
         // onEndReachedThreshold={0.01}
-        // scrollEnabled={!isLoading}
+        // scrollEnabled`={!isLoading}
         // ListHeaderComponent={() => (
         //   <StartContainer>
         //     <Title>
@@ -81,11 +59,6 @@ export default function LectureHome({}: MainTabScreenProps<'LectureHome'>) {
         //   </StartContainer>
         // )}
       />
-      {/* <StartContainer>
-        <StartBtn>
-          <StartText>바로가기</StartText>
-        </StartBtn>
-      </StartContainer> */}
     </ScreenLayout>
   );
 }
